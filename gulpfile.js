@@ -38,5 +38,6 @@ gulp.task('reload-html', function () {
 gulp.task('watch', function() {
     livereload.listen();
     gulp.watch('src/styles/*.less', ['compile-style']);
+    gulp.watch('src/images/*', ['minify-images']);
     gulp.watch('*.html', ['reload-html']);
 });
