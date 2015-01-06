@@ -1,0 +1,26 @@
+{
+  "name": "duple",
+  "version": "1.0.0",
+  "description": "Photos by @thib_thib, website inspired by @mrmrs",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thibthib/duple.git"
+  },
+  "author": "thibthib",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thibthib/duple"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-imagemin": "^2.1.0",
+    "gulp-less": "^2.0.1",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-rename": "^1.2.0",
+    "gulp-size": "^1.2.0",
+    "imagemin-mozjpeg": "^4.0.0",
+    "normalize.css": "^3.0.2"
+  }
+}
