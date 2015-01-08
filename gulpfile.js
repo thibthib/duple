@@ -3,10 +3,10 @@ var gulp       = require('gulp'),
     less       = require('gulp-less'),
     prefix     = require('gulp-autoprefixer'),
     rename     = require('gulp-rename'),
+    uncss      = require('gulp-uncss'),
     minifyCSS  = require('gulp-minify-css'),
     mozjpeg    = require('imagemin-mozjpeg'),
     livereload = require('gulp-livereload');
-
 
 gulp.task('minify-images', function () {
     gulp.src('src/images/*')
@@ -21,8 +21,7 @@ gulp.task('compile-style', function() {
     gulp.src('src/styles/main.less')
     .pipe(less())
     .pipe(prefix('last 2 version', 'ie >= 7'))
-    .pipe(size({gzip: true, showFiles: true}))
-    .pipe(gulp.dest('css'))
+    .pipe(uncss({ html: ['index.html'] }))
     .pipe(minifyCSS())
     .pipe(rename('main.min.css'))
     .pipe(size({gzip: true, showFiles: true}))
