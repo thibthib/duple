@@ -6,7 +6,8 @@ var gulp       = require('gulp'),
     uncss      = require('gulp-uncss'),
     minifyCSS  = require('gulp-minify-css'),
     mozjpeg    = require('imagemin-mozjpeg'),
-    livereload = require('gulp-livereload');
+    livereload = require('gulp-livereload'),
+    notify     = require('gulp-notify');
 
 gulp.task('minify-images', function () {
     gulp.src('src/images/*')
@@ -14,7 +15,8 @@ gulp.task('minify-images', function () {
     .pipe(mozjpeg({ quality: '65-80' })())
     .pipe(size({gzip: true, title: 'minified'}))
     .pipe(gulp.dest('images'))
-    .pipe(livereload());
+    .pipe(livereload())
+    .pipe(notify({ title: 'Image has changed', message: '<%= file.relative %> reloaded.'}));
 });
 
 gulp.task('compile-style', function() {
@@ -26,19 +28,22 @@ gulp.task('compile-style', function() {
     .pipe(rename('main.min.css'))
     .pipe(size({gzip: true, showFiles: true}))
     .pipe(gulp.dest('css'))
-    .pipe(livereload());
+    .pipe(livereload())
+    .pipe(notify({ title: 'Style has changed', message: '<%= file.relative %> reloaded.'}));
 });
 
 gulp.task('compile-script', function() {
     gulp.src('src/scripts/main.js')
     .pipe(rename('main.min.js'))
     .pipe(gulp.dest('scripts'))
-    .pipe(livereload());
+    .pipe(livereload())
+    .pipe(notify({ title: 'Script has changed', message: '<%= file.relative %> reloaded.'}));
 });
 
 gulp.task('reload-html', function () {
     gulp.src('*html')
-    .pipe(livereload());
+    .pipe(livereload())
+    .pipe(notify({ title: 'HTML has changed', message: '<%= file.relative %> reloaded.'}));
 });
 
 gulp.task('watch', function() {
