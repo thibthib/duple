@@ -41,7 +41,11 @@ function valse(event) {
 for (var i = 0; i < images.length; i++) {
     images[i].addEventListener('unveil', unveil);
     images[i].addEventListener('mousedown', valse);
+    images[i].addEventListener('mouseleave', valse);
     images[i].addEventListener('mouseup', valse);
+    images[i].addEventListener('touchstart', valse);
+    images[i].addEventListener('touchleave', valse);
+    images[i].addEventListener('touchend', valse);
 }
 
 window.onscroll = checkForUnveil;
