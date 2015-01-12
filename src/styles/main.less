@@ -5,8 +5,8 @@ body {
 }
 
 header {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 @media screen and (min-width: 48em) {
@@ -40,19 +40,23 @@ main {
     display: block;
 }
 
-main img {
+main > div {
     width: 100%;
     float: left;
 }
 
+main img {
+    width: 100%;
+}
+
 @media screen and (min-width: 768px) {
-    main img {
+    main > div {
         width: 50%;
     }
 }
 
 @media screen and (min-width: 1024px) {
-    main img {
+    main > div {
         width: 33.33%;
     }
 }

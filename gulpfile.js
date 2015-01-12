@@ -7,7 +7,10 @@ var gulp       = require('gulp'),
     minifyCSS  = require('gulp-minify-css'),
     mozjpeg    = require('imagemin-mozjpeg'),
     livereload = require('gulp-livereload'),
-    notify     = require('gulp-notify');
+    notify     = require('gulp-notify'),
+    sourcemaps = require('gulp-sourcemaps'),
+    concat     = require('gulp-concat'),
+    uglify     = require('gulp-uglify');
 
 gulp.task('minify-images', function () {
     gulp.src('src/images/*')
@@ -25,7 +28,6 @@ gulp.task('compile-style', function() {
     .pipe(prefix('last 2 version', 'ie >= 7'))
     .pipe(uncss({ html: ['index.html'] }))
     .pipe(minifyCSS())
-    .pipe(rename('main.min.css'))
     .pipe(size({gzip: true, showFiles: true}))
     .pipe(gulp.dest('css'))
     .pipe(livereload())
@@ -34,7 +36,10 @@ gulp.task('compile-style', function() {
 
 gulp.task('compile-script', function() {
     gulp.src('src/scripts/main.js')
-    .pipe(rename('main.min.js'))
+    .pipe(sourcemaps.init())
+    .pipe(concat('main.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('maps', {includeContent: false, sourceRoot: '../../src/scripts'}))
     .pipe(gulp.dest('scripts'))
     .pipe(livereload())
     .pipe(notify({ title: 'Script has changed', message: '<%= file.relative %> reloaded.'}));
