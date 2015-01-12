@@ -21,13 +21,27 @@ function checkForUnveil() {
 
 function unveil(event) {
     var image = event.currentTarget;
-    var source = image.getAttribute('data-src');
-    if (source) { image.setAttribute('src', source); }
+    image.onload = function(event) {
+        var second = new Image();
+        second.src = event.currentTarget.getAttribute('data-src-second');
+    };
+
+    image.setAttribute('src', image.getAttribute('data-src'));
+
     image.removeEventListener('unveil', unveil);
+}
+
+function valse(event) {
+    var image = event.currentTarget;
+    var source = event.type === 'mousedown' ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
+
+    image.setAttribute('src', source);
 }
 
 for (var i = 0; i < images.length; i++) {
     images[i].addEventListener('unveil', unveil);
+    images[i].addEventListener('mousedown', valse);
+    images[i].addEventListener('mouseup', valse);
 }
 
 window.onscroll = checkForUnveil;
