@@ -10,10 +10,12 @@ var gulp       = require('gulp'),
     notify     = require('gulp-notify'),
     sourcemaps = require('gulp-sourcemaps'),
     concat     = require('gulp-concat'),
-    uglify     = require('gulp-uglify');
+    uglify     = require('gulp-uglify'),
+    newer      = require('gulp-newer');
 
 gulp.task('minify-images', function () {
-    gulp.src('src/images/*')
+    gulp.src('src/images/**')
+    .pipe(newer('images'))
     .pipe(size({gzip: true, title: 'src'}))
     .pipe(mozjpeg({ quality: '65-80' })())
     .pipe(size({gzip: true, title: 'minified'}))
@@ -55,6 +57,6 @@ gulp.task('watch', function() {
     livereload.listen();
     gulp.watch('src/styles/*.less', ['compile-style']);
     gulp.watch('src/scripts/*.js', ['compile-script']);
-    gulp.watch('src/images/*', ['minify-images']);
+    gulp.watch('src/images/**', ['minify-images']);
     gulp.watch('*.html', ['reload-html']);
 });
