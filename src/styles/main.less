@@ -29,10 +29,17 @@ h1 span {
     font-size: 26px;
     display: inline-block;
     vertical-align: top;
-    margin-left: 20px;
-    padding-left: 15px;
     color: #ccc;
-    border-left: 4px solid #ccc;
+    display: block;
+}
+
+@media screen and (min-width: 500px) {
+    h1 span {
+        display: inline;
+        margin-left: 20px;
+        padding-left: 15px;
+        border-left: 4px solid #ccc;
+    }
 }
 
 main {
