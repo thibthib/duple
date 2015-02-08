@@ -33,7 +33,7 @@ function unveil(event) {
 
 function valse(event) {
     var image = event.currentTarget;
-    var source = event.type === 'mousedown' ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
+    var source = event.type === 'mousedown' || event.type === 'touchstart' ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
 
     image.setAttribute('src', source);
 }
