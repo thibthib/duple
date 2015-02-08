@@ -1,9 +1,9 @@
-var main = document.getElementsByTagName('main')[0];
-var images = main.getElementsByTagName('img');
+var mainElement = document.querySelector('main');
 
 function checkForUnveil() {
     var windowTop = window.scrollY;
     var windowBottom = windowTop + window.innerHeight;
+    var images = document.querySelectorAll('main img');
 
     for (var i = 0; i < images.length; i++) {
         var image = images[i];
@@ -20,7 +20,8 @@ function checkForUnveil() {
 }
 
 function unveil(event) {
-    var image = event.currentTarget;
+    var image = event.target || event.toElement;
+
     image.onload = function(event) {
         var second = new Image();
         second.src = event.currentTarget.getAttribute('data-src-second');
@@ -31,6 +32,7 @@ function unveil(event) {
     image.removeEventListener('unveil', unveil);
 }
 
+mainElement.addEventListener('unveil', unveil);
 function valse(event) {
     var image = event.currentTarget;
     var source = event.type === 'mousedown' || event.type === 'touchstart' ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
