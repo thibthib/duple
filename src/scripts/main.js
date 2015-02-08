@@ -33,22 +33,21 @@ function unveil(event) {
 }
 
 mainElement.addEventListener('unveil', unveil);
+
 function valse(event) {
-    var image = event.currentTarget;
-    var source = event.type === 'mousedown' || event.type === 'touchstart' ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
+    var image = event.target || event.toElement;
+    var showSecond = event.type === 'mousedown' || event.type === 'touchstart';
+    var source = showSecond ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
 
     image.setAttribute('src', source);
 }
 
-for (var i = 0; i < images.length; i++) {
-    images[i].addEventListener('unveil', unveil);
-    images[i].addEventListener('mousedown', valse);
-    images[i].addEventListener('mouseleave', valse);
-    images[i].addEventListener('mouseup', valse);
-    images[i].addEventListener('touchstart', valse);
-    images[i].addEventListener('touchleave', valse);
-    images[i].addEventListener('touchend', valse);
-}
+mainElement.addEventListener('mousedown', valse);
+mainElement.addEventListener('mouseleave', valse);
+mainElement.addEventListener('mouseup', valse);
+
+mainElement.addEventListener('touchstart', valse);
+mainElement.addEventListener('touchend', valse);
 
 window.onscroll = checkForUnveil;
 window.onresize = checkForUnveil;
