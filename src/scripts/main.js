@@ -40,7 +40,15 @@ function valse(event) {
     var showSecond = event.type === 'mousedown' || event.type === 'touchstart';
     var source = showSecond ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
 
-    image.setAttribute('src', source);
+    if ("ontouchstart" in window && event.type === 'touchstart') {
+        valseTimer = setTimeout(function() { image.setAttribute('src', source); }, 100);
+    } else {
+        image.setAttribute('src', source);
+    }
+}
+
+function cancelValse(event) {
+    window.clearTimeout(valseTimer);
 }
 
 if ("ontouchstart" in window) {
@@ -48,7 +56,8 @@ if ("ontouchstart" in window) {
     mainElement.addEventListener('touchleave', valse);
     mainElement.addEventListener('touchend', valse);
 
-    mainElement.addEventListener('touchmove', valse);
+    var valseTimer;
+    mainElement.addEventListener('touchmove', cancelValse);
 } else {
     mainElement.addEventListener('mousedown', valse);
     mainElement.addEventListener('mouseleave', valse);
