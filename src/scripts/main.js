@@ -43,12 +43,17 @@ function valse(event) {
     image.setAttribute('src', source);
 }
 
-mainElement.addEventListener('mousedown', valse);
-mainElement.addEventListener('mouseleave', valse);
-mainElement.addEventListener('mouseup', valse);
+if ("ontouchstart" in window) {
+    mainElement.addEventListener('touchstart', valse);
+    mainElement.addEventListener('touchleave', valse);
+    mainElement.addEventListener('touchend', valse);
 
-mainElement.addEventListener('touchstart', valse);
-mainElement.addEventListener('touchend', valse);
+    mainElement.addEventListener('touchmove', valse);
+} else {
+    mainElement.addEventListener('mousedown', valse);
+    mainElement.addEventListener('mouseleave', valse);
+    mainElement.addEventListener('mouseup', valse);
+}
 
 window.onscroll = checkForUnveil;
 window.onresize = checkForUnveil;
