@@ -35,7 +35,8 @@ function unveil(event) {
 mainElement.addEventListener('unveil', unveil);
 
 function valse(event) {
-    var image = event.target || event.toElement;
+    var mask = event.target || event.toElement;
+    var image = mask.parentNode.querySelector('img');
     var showSecond = event.type === 'mousedown' || event.type === 'touchstart';
     var source = showSecond ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
 
