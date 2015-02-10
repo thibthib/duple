@@ -1,10 +1,11 @@
 var mainElement = document.querySelector('main');
-var masks = document.querySelectorAll('main .imageMask');
 var loader = document.querySelector('.loader');
 
-for (var i = 0; i < masks.length; i++) {
-    var mask = masks[i];
+for (var i = 0; i < mainElement.children.length; i++) {
+    var mask = mainElement.children[i].querySelector('.imageMask');
+    var image = mainElement.children[i].querySelector('img');
     mask.appendChild(loader.cloneNode(true));
+    image.addEventListener('unveil', unveil);
 }
 
 function checkForUnveil() {
