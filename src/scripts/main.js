@@ -1,4 +1,11 @@
 var mainElement = document.querySelector('main');
+var masks = document.querySelectorAll('main .imageMask');
+var loader = document.querySelector('.loader');
+
+for (var i = 0; i < masks.length; i++) {
+    var mask = masks[i];
+    mask.appendChild(loader.cloneNode(true));
+}
 
 function checkForUnveil() {
     var windowTop = window.scrollY;
@@ -25,6 +32,8 @@ function unveil(event) {
     image.onload = function(event) {
         var second = new Image();
         second.src = event.currentTarget.getAttribute('data-src-second');
+        var loader = image.parentNode.querySelector('.loader');
+        image.parentNode.querySelector('.imageMask').removeChild(loader);
     };
 
     image.setAttribute('src', image.getAttribute('data-src'));
