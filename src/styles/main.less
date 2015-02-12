@@ -1,5 +1,9 @@
 @import (inline) "/../../node_modules/normalize.css/normalize.css";
 
+head svg {
+    display: none;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
 }
@@ -47,13 +51,17 @@ main {
     display: block;
 }
 
-main > div {
+.portrait {
     position: relative;
     width: 100%;
     float: left;
 }
 
-.imageMask {
+.portrait.is-template {
+    display: none;
+}
+
+.portrait .mask {
     position: absolute;
     top: 0;
     left: 0;
@@ -66,18 +74,18 @@ main > div {
     -webkit-tap-highlight-color: transparent;
 }
 
-main img {
+.portrait img {
     width: 100%;
 }
 
 @media screen and (min-width: 768px) {
-    main > div {
+    .portrait {
         width: 50%;
     }
 }
 
 @media screen and (min-width: 1024px) {
-    main > div {
+    .portrait {
         width: 33.33%;
     }
 }

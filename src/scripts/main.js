@@ -1,13 +1,3 @@
-var mainElement = document.querySelector('main');
-var loader = document.querySelector('.loader');
-
-for (var i = 0; i < mainElement.children.length; i++) {
-    var mask = mainElement.children[i].querySelector('.imageMask');
-    var image = mainElement.children[i].querySelector('img');
-    mask.appendChild(loader.cloneNode(true));
-    image.addEventListener('unveil', unveil);
-}
-
 function checkForUnveil() {
     var windowTop = window.scrollY;
     var windowBottom = windowTop + window.innerHeight;
@@ -34,15 +24,13 @@ function unveil(event) {
         var second = new Image();
         second.src = event.currentTarget.getAttribute('data-src-second');
         var loader = image.parentNode.querySelector('.loader');
-        image.parentNode.querySelector('.imageMask').removeChild(loader);
+        image.parentNode.querySelector('.mask').removeChild(loader);
     };
 
     image.setAttribute('src', image.getAttribute('data-src'));
 
     image.removeEventListener('unveil', unveil);
 }
-
-mainElement.addEventListener('unveil', unveil);
 
 function valse(event) {
     var mask = event.target || event.toElement;
@@ -61,6 +49,41 @@ function cancelValse(event) {
     window.clearTimeout(valseTimer);
 }
 
+var mainElement = document.querySelector('main');
+
+var portraits = [
+    { 'id': 1, 'source': 'Robin-back.jpg', 'secondSource': 'Robin-front.jpg'},
+    { 'id': 2, 'source': 'Ingrid-back.jpg', 'secondSource': 'Ingrid-front.jpg'}
+];
+
+var ajax = new XMLHttpRequest();
+ajax.onreadystatechange = function() {
+    if (ajax.readyState === 4 && (ajax.status === 200 || ajax.status === 0)) {
+        var template = document.querySelector('.portrait.is-template');
+
+        var loader = ajax.responseXML.documentElement;
+        var mask = template.querySelector('.mask');
+        mask.appendChild(loader.cloneNode(true));
+
+        for (var i = 0; i < portraits.length; i++) {
+            var personne = portraits[i];
+
+            var portraitElement = template.cloneNode(true);
+            portraitElement.className = "portrait";
+            var portrait = portraitElement.querySelector('img');
+            portrait.setAttribute('data-src', 'images/'+personne.source);
+            portrait.setAttribute('data-src-second', 'images/'+personne.secondSource);
+            portrait.addEventListener('unveil', unveil);
+
+            mainElement.appendChild(portraitElement);
+        }
+
+        checkForUnveil();
+    }
+};
+ajax.open('GET', 'images/loader.svg', true);
+ajax.send();
+
 if ("ontouchstart" in window) {
     mainElement.addEventListener('touchstart', valse);
     mainElement.addEventListener('touchleave', valse);
@@ -76,5 +99,3 @@ if ("ontouchstart" in window) {
 
 window.onscroll = checkForUnveil;
 window.onresize = checkForUnveil;
-
-checkForUnveil();
