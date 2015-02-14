@@ -17,18 +17,20 @@ function checkForUnveil() {
     }
 }
 
+function onImageLoad(event) {
+    var image = event.currentTarget;
+    var second = new Image();
+    second.src = image.getAttribute('data-src-second');
+    var loader = image.parentNode.querySelector('.loader');
+    image.parentNode.querySelector('.mask').removeChild(loader);
+    image.removeEventListener('load', onImageLoad);
+}
+
 function unveil(event) {
     var image = event.target || event.toElement;
 
-    image.onload = function(event) {
-        var second = new Image();
-        second.src = event.currentTarget.getAttribute('data-src-second');
-        var loader = image.parentNode.querySelector('.loader');
-        image.parentNode.querySelector('.mask').removeChild(loader);
-    };
-
     image.setAttribute('src', image.getAttribute('data-src'));
-
+    image.addEventListener('load', onImageLoad);
     image.removeEventListener('unveil', unveil);
 }
 
@@ -62,14 +64,18 @@ ajax.onreadystatechange = function() {
         var template = document.querySelector('.portrait.is-template');
 
         var loader = ajax.responseXML.documentElement;
-        var mask = template.querySelector('.mask');
-        mask.appendChild(loader.cloneNode(true));
+        template.querySelector('.mask').appendChild(loader.cloneNode(true));
 
         for (var i = 0; i < portraits.length; i++) {
             var personne = portraits[i];
 
             var portraitElement = template.cloneNode(true);
             portraitElement.className = "portrait";
+
+            var mask = portraitElement.querySelector('.mask');
+            var id = document.createElement('div');
+            mask.appendChild(id);
+
             var portrait = portraitElement.querySelector('img');
             portrait.setAttribute('data-src', 'images/'+personne.source);
             portrait.setAttribute('data-src-second', 'images/'+personne.secondSource);
