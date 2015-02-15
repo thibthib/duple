@@ -51,17 +51,17 @@ main {
     display: block;
 }
 
-.portrait {
+.Portrait {
     position: relative;
     width: 100%;
     float: left;
 }
 
-.portrait.is-template {
+.Portrait.is-template {
     display: none;
 }
 
-.portrait .mask {
+.Portrait-mask {
     position: absolute;
     top: 0;
     left: 0;
@@ -74,23 +74,23 @@ main {
     -webkit-tap-highlight-color: transparent;
 }
 
-.portrait img {
+.Portrait img {
     width: 100%;
 }
 
 @media screen and (min-width: 768px) {
-    .portrait {
+    .Portrait {
         width: 50%;
     }
 }
 
 @media screen and (min-width: 1024px) {
-    .portrait {
+    .Portrait {
         width: 33.33%;
     }
 }
 
-.loader {
+.Portrait-loader {
     animation: rotate 2s linear infinite;
     height: 50px;
     left: ~'calc(50% - 25px)';
@@ -99,7 +99,7 @@ main {
     width: 50px;
 }
 
-circle {
+.Portrait-loader circle {
     stroke-dasharray: 1,200;
     stroke-dashoffset: 0;
     animation:
