@@ -74,6 +74,27 @@ main {
     -webkit-tap-highlight-color: transparent;
 }
 
+.Portrait-id {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: white;
+    opacity: 0;
+    font-size: 26px;
+    padding: 5px 15px;
+    cursor: pointer;
+
+    transition: opacity 200ms;
+}
+
+.Portrait-mask:hover .Portrait-id {
+    opacity: 0.75;
+}
+
+.Portrait-id:hover {
+    opacity: 1 !important;
+}
+
 .Portrait img {
     width: 100%;
 }

@@ -66,7 +66,11 @@ for (var i = 0; i < portraits.length; i++) {
     var portraitElement = template.cloneNode(true);
     portraitElement.className = "Portrait";
 
+    var idElement = portraitElement.querySelector('.Portrait-id');
+    idElement.textContent = '#' + ('00' + personne.id).substr(-3);
 
+    var mask = portraitElement.querySelector('.Portrait-mask');
+    mask.appendChild(idElement);
 
     var portrait = portraitElement.querySelector('img');
     portrait.setAttribute('data-src', 'images/'+personne.source);
