@@ -21,8 +21,8 @@ function onImageLoad(event) {
     var image = event.currentTarget;
     var second = new Image();
     second.src = image.getAttribute('data-src-second');
-    var loader = image.parentNode.querySelector('.loader');
-    image.parentNode.querySelector('.mask').removeChild(loader);
+    var loader = image.parentNode.querySelector('.Portrait-loader');
+    image.parentNode.querySelector('.Portrait-mask').removeChild(loader);
     image.removeEventListener('load', onImageLoad);
 }
 
@@ -58,37 +58,25 @@ var portraits = [
     { 'id': 2, 'source': 'Ingrid-back.jpg', 'secondSource': 'Ingrid-front.jpg'}
 ];
 
-var ajax = new XMLHttpRequest();
-ajax.onreadystatechange = function() {
-    if (ajax.readyState === 4 && (ajax.status === 200 || ajax.status === 0)) {
-        var template = document.querySelector('.portrait.is-template');
+var template = document.querySelector('.Portrait.is-template');
 
-        var loader = ajax.responseXML.documentElement;
-        template.querySelector('.mask').appendChild(loader.cloneNode(true));
+for (var i = 0; i < portraits.length; i++) {
+    var personne = portraits[i];
 
-        for (var i = 0; i < portraits.length; i++) {
-            var personne = portraits[i];
+    var portraitElement = template.cloneNode(true);
+    portraitElement.className = "Portrait";
 
-            var portraitElement = template.cloneNode(true);
-            portraitElement.className = "portrait";
 
-            var mask = portraitElement.querySelector('.mask');
-            var id = document.createElement('div');
-            mask.appendChild(id);
 
-            var portrait = portraitElement.querySelector('img');
-            portrait.setAttribute('data-src', 'images/'+personne.source);
-            portrait.setAttribute('data-src-second', 'images/'+personne.secondSource);
-            portrait.addEventListener('unveil', unveil);
+    var portrait = portraitElement.querySelector('img');
+    portrait.setAttribute('data-src', 'images/'+personne.source);
+    portrait.setAttribute('data-src-second', 'images/'+personne.secondSource);
+    portrait.addEventListener('unveil', unveil);
 
-            mainElement.appendChild(portraitElement);
-        }
+    mainElement.appendChild(portraitElement);
+}
 
-        checkForUnveil();
-    }
-};
-ajax.open('GET', 'images/loader.svg', true);
-ajax.send();
+checkForUnveil();
 
 if ("ontouchstart" in window) {
     mainElement.addEventListener('touchstart', valse);
