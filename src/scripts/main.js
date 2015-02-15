@@ -36,14 +36,17 @@ function unveil(event) {
 
 function valse(event) {
     var mask = event.target || event.toElement;
-    var image = mask.parentNode.querySelector('img');
-    var showSecond = event.type === 'mousedown' || event.type === 'touchstart';
-    var source = showSecond ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
 
-    if ("ontouchstart" in window && event.type === 'touchstart') {
-        valseTimer = setTimeout(function() { image.setAttribute('src', source); }, 100);
-    } else {
-        image.setAttribute('src', source);
+    if (mask.className == 'Portrait-mask') {
+        var image = mask.parentNode.querySelector('img');
+        var showSecond = event.type === 'mousedown' || event.type === 'touchstart';
+        var source = showSecond ? image.getAttribute('data-src-second') : image.getAttribute('data-src');
+
+        if ("ontouchstart" in window && event.type === 'touchstart') {
+            valseTimer = setTimeout(function() { image.setAttribute('src', source); }, 100);
+        } else {
+            image.setAttribute('src', source);
+        }
     }
 }
 
@@ -71,6 +74,7 @@ for (var i = 0; i < portraits.length; i++) {
 
     var mask = portraitElement.querySelector('.Portrait-mask');
     mask.appendChild(idElement);
+    mask.addEventListener('mouseleave', valse);
 
     var portrait = portraitElement.querySelector('img');
     portrait.setAttribute('data-src', 'images/'+personne.source);
@@ -91,7 +95,7 @@ if ("ontouchstart" in window) {
     mainElement.addEventListener('touchmove', cancelValse);
 } else {
     mainElement.addEventListener('mousedown', valse);
-    mainElement.addEventListener('mouseleave', valse);
+    //mainElement.addEventListener('mouseleave', valse);
     mainElement.addEventListener('mouseup', valse);
 }
 
