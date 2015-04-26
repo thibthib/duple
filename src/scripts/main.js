@@ -57,8 +57,9 @@ function cancelValse(event) {
 var mainElement = document.querySelector('main');
 
 var portraits = [
-    { 'id': 1, 'source': 'Robin-back.jpg', 'secondSource': 'Robin-front.jpg'},
-    { 'id': 2, 'source': 'Ingrid-back.jpg', 'secondSource': 'Ingrid-front.jpg'}
+    { 'id': 3, 'source': 'Edern-back.jpg', 'secondSource': 'Edern-front.jpg'},
+    { 'id': 2, 'source': 'Ingrid-back.jpg', 'secondSource': 'Ingrid-front.jpg'},
+    { 'id': 1, 'source': 'Robin-back.jpg', 'secondSource': 'Robin-front.jpg'}
 ];
 
 var template = document.querySelector('.Portrait.is-template');
