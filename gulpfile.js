@@ -17,7 +17,7 @@ gulp.task('minify-images', function () {
     gulp.src('src/images/**')
     .pipe(newer('images'))
     .pipe(size({gzip: true, title: 'src'}))
-    .pipe(mozjpeg({ quality: '65-80' })())
+    .pipe(mozjpeg({ quality: 60 })())
     .pipe(size({gzip: true, title: 'minified'}))
     .pipe(gulp.dest('images'))
     .pipe(livereload())
