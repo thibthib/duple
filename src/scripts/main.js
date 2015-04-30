@@ -1,5 +1,6 @@
 function checkForUnveil() {
-    var windowTop = window.scrollY;
+    //var windowTop = window.scrollY;
+    var windowTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
     var windowBottom = windowTop + window.innerHeight;
     var images = document.querySelectorAll('main img');
 
@@ -111,5 +112,3 @@ if (language == 'fr') {
 } else {
     tooltip.appendChild(document .createTextNode('Stay clicked to valse !'));
 }
-
-console.log(language);
