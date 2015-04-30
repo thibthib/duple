@@ -102,3 +102,14 @@ if ("ontouchstart" in window) {
 
 window.onscroll = checkForUnveil;
 window.onresize = checkForUnveil;
+
+var language = window.navigator.userLanguage || window.navigator.language;
+var tooltip = document.querySelector('.Tutorial .Tooltip');
+
+if (language == 'fr') {
+    tooltip.appendChild(document .createTextNode('Restez cliqué pour valser !'));
+} else {
+    tooltip.appendChild(document .createTextNode('Stay clicked to valse !'));
+}
+
+console.log(language);
