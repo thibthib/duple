@@ -48,6 +48,8 @@ function valse(event) {
         } else {
             image.setAttribute('src', source);
         }
+
+        hideTutorial();
     }
 }
 
@@ -55,19 +57,34 @@ function cancelValse(event) {
     window.clearTimeout(valseTimer);
 }
 
-function tutorialDisplay(event) {
-    var image = event.target || event.toElement;
-    image.addEventListener('load', function() {
-        var language = window.navigator.userLanguage || window.navigator.language;
-        var tooltip = document.querySelector('.Tutorial .Tooltip');
-        tooltip.style.display = 'inline-block';
+function checkForTutorial(event) {
+    portrait.removeEventListener('unveil', displayTutorial);
+    var cookieHiding = document.cookie.replace(/(?:(?:^|.*;\s*)hideTutorial\s*\=\s*([^;]*).*$)|^.*$/, '$1') == 'true';
+    if (!cookieHiding) {
+        var image = event.target || event.toElement;
+        image.addEventListener('load', function(event) {
+            event.target.removeEventListener(event.type, arguments.callee);
+            displayTutorial();
+        });
+    }
+}
 
-        if (language == 'fr') {
-            tooltip.appendChild(document .createTextNode('Restez cliqué pour valser !'));
-        } else {
-            tooltip.appendChild(document .createTextNode('Stay clicked to valse !'));
-        }
-    });
+function displayTutorial() {
+    var language = window.navigator.userLanguage || window.navigator.language;
+    var tooltip = document.querySelector('.Tutorial .Tooltip');
+    tooltip.style.display = 'inline-block';
+
+    if (language == 'fr') {
+        tooltip.innerHTML = 'Restez cliqué pour valser !';
+    } else {
+        tooltip.innerHTML = 'Stay clicked to valse !';
+    }
+}
+
+function hideTutorial() {
+    var tooltip = document.querySelector('.Tutorial .Tooltip');
+    tooltip.style.display = 'none';
+    document.cookie = "hideTutorial=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
 }
 
 var mainElement = document.querySelector('main');
@@ -99,7 +116,7 @@ for (var i = 0; i < portraits.length; i++) {
     portrait.addEventListener('unveil', unveil);
 
     if (i === 0) {
-        portrait.addEventListener('unveil', tutorialDisplay);
+        portrait.addEventListener('unveil', checkForTutorial);
     }
 
     mainElement.appendChild(portraitElement);
@@ -122,5 +139,3 @@ if ("ontouchstart" in window) {
 
 window.onscroll = checkForUnveil;
 window.onresize = checkForUnveil;
-
-//document.cookie = "someCookieName=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
