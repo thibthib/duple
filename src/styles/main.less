@@ -49,6 +49,40 @@ h1 span {
 main {
     width: 100%;
     display: block;
+    position: relative;
+}
+
+.Tutorial {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: -30px;
+    z-index: 10;
+}
+
+.Tooltip {
+    position: relative;
+    display: inline-block;
+    padding: 3px 8px;
+    color: #fff;
+    margin: 0 auto;
+    text-decoration: none;
+    background-color: #555;
+    border-radius: 4px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        bottom: -5px;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px 5px 0;
+        border-top-color: #555;
+    }
 }
 
 .Portrait {
@@ -101,13 +135,15 @@ main {
 }
 
 @media screen and (min-width: 768px) {
-    .Portrait {
+    .Portrait,
+    .Tutorial {
         width: 50%;
     }
 }
 
 @media screen and (min-width: 1024px) {
-    .Portrait {
+    .Portrait,
+    .Tutorial {
         width: 33.33%;
     }
 }
