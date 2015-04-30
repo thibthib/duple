@@ -55,6 +55,21 @@ function cancelValse(event) {
     window.clearTimeout(valseTimer);
 }
 
+function tutorialDisplay(event) {
+    var image = event.target || event.toElement;
+    image.addEventListener('load', function() {
+        var language = window.navigator.userLanguage || window.navigator.language;
+        var tooltip = document.querySelector('.Tutorial .Tooltip');
+        tooltip.style.display = 'inline-block';
+
+        if (language == 'fr') {
+            tooltip.appendChild(document .createTextNode('Restez cliqué pour valser !'));
+        } else {
+            tooltip.appendChild(document .createTextNode('Stay clicked to valse !'));
+        }
+    });
+}
+
 var mainElement = document.querySelector('main');
 
 var portraits = [
@@ -83,6 +98,10 @@ for (var i = 0; i < portraits.length; i++) {
     portrait.setAttribute('data-src-second', 'images/'+personne.secondSource);
     portrait.addEventListener('unveil', unveil);
 
+    if (i === 0) {
+        portrait.addEventListener('unveil', tutorialDisplay);
+    }
+
     mainElement.appendChild(portraitElement);
 }
 
@@ -104,11 +123,4 @@ if ("ontouchstart" in window) {
 window.onscroll = checkForUnveil;
 window.onresize = checkForUnveil;
 
-var language = window.navigator.userLanguage || window.navigator.language;
-var tooltip = document.querySelector('.Tutorial .Tooltip');
-
-if (language == 'fr') {
-    tooltip.appendChild(document .createTextNode('Restez cliqué pour valser !'));
-} else {
-    tooltip.appendChild(document .createTextNode('Stay clicked to valse !'));
-}
+//document.cookie = "someCookieName=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
