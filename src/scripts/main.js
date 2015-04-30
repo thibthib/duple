@@ -75,9 +75,9 @@ function displayTutorial() {
     tooltip.style.display = 'inline-block';
 
     if (language == 'fr') {
-        tooltip.innerHTML = 'Restez cliqué pour valser !';
+        tooltip.innerHTML = 'Appuie pour valser !';
     } else {
-        tooltip.innerHTML = 'Stay clicked to valse !';
+        tooltip.innerHTML = 'Press to valse !';
     }
 }
 
