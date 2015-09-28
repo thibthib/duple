@@ -90,6 +90,7 @@ function hideTutorial() {
 var mainElement = document.querySelector('main');
 
 var portraits = [
+    { 'id': 5, 'source': 'Fanny-back.jpg', 'secondSource': 'Fanny-front.jpg'},
     { 'id': 4, 'source': 'Laurent-back.jpg', 'secondSource': 'Laurent-front.jpg'},
     { 'id': 3, 'source': 'Edern-back.jpg', 'secondSource': 'Edern-front.jpg'},
     { 'id': 2, 'source': 'Ingrid-back.jpg', 'secondSource': 'Ingrid-front.jpg'},
