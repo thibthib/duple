@@ -29,5 +29,8 @@
     "gulp-uncss": "latest",
     "imagemin-mozjpeg": "latest",
     "normalize.css": "latest"
+  },
+  "scripts": {
+    "build": "gulp build"
   }
 }

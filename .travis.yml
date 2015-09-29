@@ -1,13 +1,10 @@
 language: node_js
 node_js:
   - "4.1"
-before_script:
-  - npm install -g gulp
-script: gulp build
+script: npm run build
 branches:
   only:
     - gh-pages
-sudo: false
 cache:
   directories:
     - node_modules
