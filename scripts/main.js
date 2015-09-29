@@ -1,5 +1,3 @@
-console.log('test for travis build');
-
 function checkForUnveil() {
     //var windowTop = window.scrollY;
     var windowTop = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
