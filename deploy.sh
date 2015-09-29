@@ -1,5 +1,7 @@
 #!/bin/bash
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  
+git checkout gh-pages
 
 npm run build
 
