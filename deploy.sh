@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$TRAVIS_PULL_REQUEST" == "false" ] then
+if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
 npm run build
 
