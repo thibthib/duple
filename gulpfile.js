@@ -60,3 +60,5 @@ gulp.task('watch', function() {
     gulp.watch('src/images/**', ['minify-images']);
     gulp.watch('*.html', ['reload-html']);
 });
+
+gulp.task('build', ['compile-script', 'compile-style', 'minify-images']);
