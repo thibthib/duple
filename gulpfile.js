@@ -14,35 +14,35 @@ var gulp       = require('gulp'),
     newer      = require('gulp-newer');
 
 gulp.task('minify-images', function () {
-    gulp.src('src/images/**')
+    gulp.src('images/**')
     .pipe(newer('images'))
     .pipe(size({gzip: true, title: 'src'}))
     .pipe(mozjpeg({ quality: 60 })())
     .pipe(size({gzip: true, title: 'minified'}))
-    .pipe(gulp.dest('images'))
+    .pipe(gulp.dest('assets/images'))
     .pipe(livereload())
     .pipe(notify({ title: 'Image has changed', message: '<%= file.relative %> reloaded.'}));
 });
 
 gulp.task('compile-style', function() {
-    gulp.src('src/styles/main.less')
+    gulp.src('styles/main.less')
     .pipe(less())
     .pipe(prefix('last 2 version', 'ie >= 7'))
     .pipe(uncss({ html: ['index.html'] }))
     .pipe(minifyCSS())
     .pipe(size({gzip: true, showFiles: true}))
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('assets/css'))
     .pipe(livereload())
     .pipe(notify({ title: 'Style has changed', message: '<%= file.relative %> reloaded.'}));
 });
 
 gulp.task('compile-script', function() {
-    gulp.src('src/scripts/main.js')
+    gulp.src('scripts/main.js')
     .pipe(sourcemaps.init())
     .pipe(concat('main.js'))
     .pipe(uglify())
-    .pipe(sourcemaps.write('maps', {includeContent: false, sourceRoot: '../../src/scripts'}))
-    .pipe(gulp.dest('scripts'))
+    .pipe(sourcemaps.write('maps', {includeContent: false, sourceRoot: '../../scripts'}))
+    .pipe(gulp.dest('assets/scripts'))
     .pipe(livereload())
     .pipe(notify({ title: 'Script has changed', message: '<%= file.relative %> reloaded.'}));
 });
@@ -55,9 +55,9 @@ gulp.task('reload-html', function () {
 
 gulp.task('watch', function() {
     livereload.listen();
-    gulp.watch('src/styles/*.less', ['compile-style']);
-    gulp.watch('src/scripts/*.js', ['compile-script']);
-    gulp.watch('src/images/**', ['minify-images']);
+    gulp.watch('styles/*.less', ['compile-style']);
+    gulp.watch('scripts/*.js', ['compile-script']);
+    gulp.watch('images/**', ['minify-images']);
     gulp.watch('*.html', ['reload-html']);
 });
 

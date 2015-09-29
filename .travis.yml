@@ -5,6 +5,7 @@ script: npm run build
 branches:
   only:
     - gh-pages
+    - moving-assets
 cache:
   directories:
     - node_modules
