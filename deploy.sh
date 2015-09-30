@@ -4,7 +4,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 npm run build
 
 git config user.name "Travis CI"
-git config user.email "contact@travis-ci.com"
+git config user.email "travis.ci.build@gmail.com"
 
 git add --all
 git commit -m "Deploy assets from build #$TRAVIS_BUILD_NUMBER"
