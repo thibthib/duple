@@ -13,24 +13,13 @@
     "url": "https://github.com/thibthib/duple"
   },
   "devDependencies": {
-    "gulp": "latest",
-    "gulp-autoprefixer": "latest",
-    "gulp-concat": "latest",
-    "gulp-imagemin": "latest",
-    "gulp-less": "latest",
-    "gulp-livereload": "latest",
-    "gulp-minify-css": "latest",
-    "gulp-newer": "latest",
-    "gulp-notify": "latest",
-    "gulp-rename": "latest",
-    "gulp-size": "latest",
-    "gulp-sourcemaps": "latest",
-    "gulp-uglify": "latest",
-    "gulp-uncss": "latest",
-    "imagemin-mozjpeg": "latest",
-    "normalize.css": "latest"
+    "babel-loader": "^5.3.2",
+    "json-loader": "^0.5.3",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
   },
   "scripts": {
-    "build": "gulp build"
+	"build": "webpack -p",
+    "dev": "webpack-dev-server --inline --hot --colors"
   }
 }
