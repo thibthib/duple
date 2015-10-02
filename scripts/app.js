@@ -1,3 +1,4 @@
+import '../styles/main.less';
 import portraits from '../images/portraits.json';
 import { valse, cancelValse } from './valse.js';
 import { unveil, checkForUnveil } from './unveil.js';
