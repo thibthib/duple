@@ -21,8 +21,8 @@ for (var i = 0; i < portraits.length; i++) {
     mask.addEventListener('mouseleave', valse);
 
     var portrait = portraitElement.querySelector('img');
-    portrait.setAttribute('data-src', 'assets/images/'+personne.source);
-    portrait.setAttribute('data-src-second', 'assets/images/'+personne.secondSource);
+    portrait.setAttribute('data-src', require('../images/'+personne.name+'-back.jpg'));
+    portrait.setAttribute('data-src-second', require('../images/'+personne.name+'-front.jpg'));
     portrait.addEventListener('unveil', unveil);
 
     if (i === 0) {
