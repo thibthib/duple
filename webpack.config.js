@@ -3,8 +3,8 @@ module.exports = {
     'app': __dirname + '/scripts/app.js'
   },
   output: {
-    path: __dirname + '/assets',
-    publicPath: '/assets',
+    path: __dirname + '/assets/',
+    publicPath: 'assets/',
     filename: '[name].js'
   },
   module: {
