@@ -13,7 +13,7 @@ module.exports = {
       { test: /\.json$/, loader: 'json'},
       { test: /\.less$/, loader: 'style!css!less' },
       { test: /\.css$/, loader: 'style!css' },
-      { test: /\.(jpe?g|png|gif|svg)$/i, loader: 'file!image-webpack?progressive=true' }
+      { test: /\.(jpe?g|png|gif|svg)$/i, loader: 'file?name=[hash:6].[ext]!image-webpack?progressive=true' }
     ]
   },
   resolve: {
