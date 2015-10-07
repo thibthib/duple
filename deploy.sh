@@ -1,7 +1,7 @@
 #!/bin/bash
-if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-
 npm run build
+
+if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
 git config user.name "Travis CI"
 git config user.email "travis.ci.build@gmail.com"
