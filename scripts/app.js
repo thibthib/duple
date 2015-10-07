@@ -3,15 +3,18 @@ import portraits from '../images/portraits.json';
 import { valse, cancelValse } from './valse.js';
 import { unveil, checkForUnveil } from './unveil.js';
 import { checkForTutorial } from './tutorial.js';
+import templateString from '../templates/portrait.html';
 
-var template = document.querySelector('.Portrait.is-template');
+var div = document.createElement('div');
+div.innerHTML = templateString;
+var template = div.firstChild
+
 var mainElement = document.querySelector('main');
 
 for (var i = 0; i < portraits.length; i++) {
     var personne = portraits[i];
 
     var portraitElement = template.cloneNode(true);
-    portraitElement.className = "Portrait";
 
     var idElement = portraitElement.querySelector('.Portrait-id');
     idElement.textContent = '#' + ('00' + personne.id).substr(-3);
