@@ -1,0 +1,33 @@
+{
+  "name": "resize-loader",
+  "version": "0.0.1",
+  "description": "Image resizer loader for webpack",
+  "keywords": [
+    "image",
+    "lwip",
+    "resize",
+    "resize-loader",
+    "optimize",
+    "webpack",
+    "webpack-loader"
+  ],
+  "peerDependencies": {
+    "lwip": "^0.0.8"
+  },
+  "dependencies": {
+    "loader-utils": "^0.2.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": {
+    "name": "Thibaut Dutartre",
+    "email": "t.dutartre@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
