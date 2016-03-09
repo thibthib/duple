@@ -18,6 +18,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
+    modulesDirectories: ['node_modules', 'modules']
   }
 };
