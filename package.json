@@ -36,5 +36,8 @@
     "build": "webpack -p",
     "dev": "webpack-dev-server --inline --hot --colors",
     "generate-images": "babel-node ./generate-images.js"
+  },
+  "dependencies": {
+    "normalize.css": "^3.0.3"
   }
 }
