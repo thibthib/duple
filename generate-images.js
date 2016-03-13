@@ -26,12 +26,14 @@ async.map(['./images/Robin-front.jpg'], (filename, callback) => {
         const resizes = sizes.map((size) => {
             return (callback) => {
                 const imagePath = `assets/Robin-front-${size}w.jpg`;
-    			image.batch()
-                     .resize(size)
-                     .writeFile(path.relative(__dirname, imagePath), 'jpg', { quality: 60 }, (error) => {
-                        console.log(`     ${path.basename(imagePath)} generated`);
-        				callback(error, path.resolve(__dirname, imagePath));
-        			});
+    			image.clone((error, clone) => {
+                    clone.batch()
+                         .resize(size)
+                         .writeFile(path.relative(__dirname, imagePath), 'jpg', { quality: 80 }, (error) => {
+                             console.log(`     ${path.basename(imagePath)} generated`);
+                             callback(error, path.resolve(__dirname, imagePath));
+                         });
+                });
             }
         });
 		async.series(resizes, (error, resizedImageNames) => {
