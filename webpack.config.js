@@ -10,7 +10,11 @@ module.exports = {
   module: {
     loaders: [
 	  { test: /\.html$/, loader: 'html'},
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel'},
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel',
+        query: {
+          presets: ['es2015']
+        }
+      },
       { test: /\.json$/, loader: 'json'},
       { test: /\.less$/, loader: 'style!css!less' },
       { test: /\.css$/, loader: 'style!css' },
