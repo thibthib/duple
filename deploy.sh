@@ -1,5 +1,4 @@
 #!/bin/bash
-rm -rf assets
 npm run build
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
