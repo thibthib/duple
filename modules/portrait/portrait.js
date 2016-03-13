@@ -14,22 +14,33 @@ export default ({ id, name }) => {
 		name
 	}
 	
-	state.frontSource = require('../../images/'+name+'-front.jpg');
-	state.backSource = require('../../images/'+name+'-back.jpg');
+	state.images = [480, 640, 800, 1080, 1280].map(size => {
+		return {
+			back: `assets/${state.name}-back-${size}w.jpg`,
+			front: `assets/${state.name}-front-${size}w.jpg`,
+			size
+		}
+	});
 	
 	state.element.querySelector('.Portrait-id').textContent = '#' + ('00' + id).substr(-3);
+	
+	const getSrcset = (face) => {
+		return state.images.map(image => `${image[face]} ${image.size}w`).join(',');
+	}
 	
 	const preloadFront = () => {
 		const loader = state.element.querySelector('.Portrait-loader');
     	state.element.querySelector('.Portrait-mask').removeChild(loader);
 		state.image.removeEventListener('load', preloadFront);
 	    const frontImage = new Image();
-	    frontImage.src = state.frontSource;
+		frontImage.srcset = getSrcset('front');
+	    frontImage.src = state.images[0].front;
 	}
 	
 	const unveil = () => {
 		state.element.removeEventListener('unveil', unveil);
-		const image = `<img src="${state.backSource}">`;
+		const srcset = getSrcset('back');
+		const image = `<img src="${state.images[0].back}" srcset="${srcset}" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw">`;
 		state.image = getDOMfromString(image);
 		state.image.addEventListener('load', preloadFront);
 		state.element.appendChild(state.image);
@@ -37,11 +48,13 @@ export default ({ id, name }) => {
 	state.element.addEventListener('unveil', unveil);
 	
 	const showFront = () => {
-		state.image.setAttribute('src', state.frontSource);
+		state.image.setAttribute('srcset', getSrcset('front'));
+		state.image.setAttribute('src', state.images[0].front);
 	}
 	
 	const showBack = () => {
-		state.image.setAttribute('src', state.backSource);
+		state.image.setAttribute('srcset', getSrcset('back'));
+		state.image.setAttribute('src', state.images[0].back);
 	}
 	
     var mask = state.element.querySelector('.Portrait-mask');
