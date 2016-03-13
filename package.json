@@ -19,6 +19,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.7.0",
     "css-loader": "^0.19.0",
     "file-loader": "^0.8.4",
+    "glob": "^7.0.3",
     "html-loader": "^0.3.0",
     "image-webpack-loader": "^1.6.1",
     "imagemin": "^3.2.0",

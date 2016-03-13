@@ -2,6 +2,7 @@ import lwip from 'lwip';
 import path from 'path';
 import { spawn } from 'child_process';
 import async from 'async';
+import glob from 'glob';
 
 const cliPath = 'node_modules/imageoptim-cli/bin';
 
@@ -19,13 +20,13 @@ imageOptimCli.on('exit', (code) => {
     return code === 0 ? console.log('yay !') : console.log('uh oh...');
 });
 
-async.map(['./images/Robin-front.jpg'], (filename, callback) => {
-	console.log(`Processing image ${path.basename(filename)}...`);
+async.map(glob.sync('images/*.jpg'), (filename, callback) => {
+	console.log(`Processing image ${path.basename(filename, '.jpg')}...`);
 	lwip.open(filename, (error, image) => {
         error && console.error(error);
         const resizes = sizes.map((size) => {
             return (callback) => {
-                const imagePath = `assets/Robin-front-${size}w.jpg`;
+                const imagePath = `assets/${path.basename(filename, '.jpg')}-${size}w.jpg`;
     			image.clone((error, clone) => {
                     clone.batch()
                          .resize(size)
