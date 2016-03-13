@@ -2,7 +2,8 @@ import '../styles/main.less';
 import portraits from '../images/portraits.json';
 import { checkForUnveil } from './unveil.js';
 import { checkForTutorial } from './tutorial.js';
-import Portrait from '../modules/portrait/portrait.js';
+import Portrait from 'portrait';
+import './font.js';
 
 var mainElement = document.querySelector('main');
 
